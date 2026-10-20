@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Ross Clifford, software developer in Galway, Ireland. Experience, skills and education.">
+<title>Ross CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: a sticky identity rail on the left, CV sections on the right; one column on phones. */
+:root {
+  --bg: #F3F6F7;
+  --surface: #FFFFFF;
+  --fg: #12202A;
+  --muted: #51636D;
+  --line: #D5DEE2;
+  --accent: #0B6B7A;
+  --accent-soft: #E1F0F3;
+  --ok: #1A7F4B;
+  --font-display: "Bricolage Grotesque", "IBM Plex Sans", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D161B;
+    --surface: #131F26;
+    --fg: #E4ECEF;
+    --muted: #98ABB4;
+    --line: #24343D;
+    --accent: #5CC4D6;
+    --accent-soft: #14303A;
+    --ok: #5FD08F;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D161B;
+  --surface: #131F26;
+  --fg: #E4ECEF;
+  --muted: #98ABB4;
+  --line: #24343D;
+  --accent: #5CC4D6;
+  --accent-soft: #14303A;
+  --ok: #5FD08F;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 400 1rem/1.65 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.page {
+  max-width: 70rem;
+  margin: 0 auto;
+  padding-block: clamp(2rem, 6vw, 4.5rem);
+  padding-inline: clamp(1rem, 5vw, 2.5rem);
+}
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 16.5rem) minmax(0, 1fr);
+  gap: clamp(2rem, 7vw, 5.5rem);
+  align-items: start;
+}
+
+/* Rail */
+.rail { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 2.5rem); min-width: 0; }
+h1 {
+  font: 700 clamp(2.4rem, 5vw, 3.1rem)/1.02 var(--font-display);
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+  text-wrap: balance;
+}
+.role { margin: 0; color: var(--muted); font-size: 1.05rem; }
+.where { margin: 0.25rem 0 0; color: var(--muted); font: 400 0.875rem/1.5 var(--font-mono); }
+
+.contact { margin: 2rem 0 0; padding: 1.25rem 0 0; border-top: 1px solid var(--line); display: grid; gap: 1rem; }
+.contact div { min-width: 0; }
+.contact dt { font: 500 0.7rem/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem; }
+.contact dd { margin: 0; font-size: 0.95rem; overflow-wrap: anywhere; }
+.copy-row { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+.copy-btn {
+  font: 500 0.75rem/1 var(--font-mono);
+  color: var(--accent); background: transparent;
+  border: 1px solid var(--line); border-radius: 4px;
+  padding: 0.35rem 0.55rem; cursor: pointer;
+}
+.copy-btn:hover { border-color: var(--accent); }
+
+/* Main column */
+main { min-width: 0; display: grid; gap: clamp(2.5rem, 5vw, 3.5rem); }
+section { min-width: 0; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+h2 {
+  font: 500 0.75rem/1 var(--font-mono);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 1.5rem;
+}
+.lede { font-size: clamp(1.15rem, 2.2vw, 1.4rem); line-height: 1.5; margin: 0; max-width: 40rem; text-wrap: pretty; }
+.lede + .lede { margin-top: 1rem; color: var(--muted); font-size: 1.05rem; }
+
+.entry { display: grid; gap: 0.75rem; max-width: 42rem; }
+.entry + .entry { margin-top: 2rem; }
+.entry-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.25rem 1.5rem; }
+.entry h3 { font: 600 1.15rem/1.35 var(--font-display); margin: 0; letter-spacing: -0.005em; }
+.entry .org { color: var(--muted); margin: 0; }
+.when { font: 400 0.8rem/1.4 var(--font-mono); color: var(--muted); white-space: nowrap; }
+.entry ul { margin: 0; padding-left: 1.15rem; display: grid; gap: 0.55rem; }
+.entry li::marker { color: var(--accent); }
+.entry p { margin: 0; }
+
+.skills { margin: 0; display: grid; gap: 1.25rem; max-width: 42rem; }
+.skills div { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 0.5rem 1rem; align-items: baseline; }
+.skills dt { font: 500 0.75rem/1.4 var(--font-mono); letter-spacing: 0.04em; color: var(--muted); }
+.skills dd { margin: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tag {
+  font: 400 0.85rem/1 var(--font-mono);
+  padding: 0.4rem 0.6rem;
+  background: var(--accent-soft);
+  color: var(--fg);
+  border-radius: 4px;
+}
+
+footer { margin-top: clamp(2.5rem, 5vw, 3.5rem); font: 400 0.75rem/1.5 var(--font-mono); color: var(--muted); }
+
+@media (max-width: 52rem) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .rail { position: static; }
+  .skills div { grid-template-columns: minmax(0, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="layout">
+    <aside class="rail">
+      <h1>Ross<br>Clifford</h1>
+      <p class="role">Software Engineer</p>
+      <p class="where">Galway, Ireland</p>
+
+      <dl class="contact">
+        <div>
+          <dt>Email</dt>
+          <dd class="copy-row">
+            <span id="email">ross@rossclifford.com</span>
+            <button type="button" class="copy-btn" id="copy-email">Copy</button>
+          </dd>
+        </div>
+        <div>
+          <dt>LinkedIn</dt>
+          <dd><a href="https://www.linkedin.com/in/ross-clifford-55080284" target="_blank" rel="noopener">linkedin.com/in/ross-clifford-55080284</a></dd>
+        </div>
+      </dl>
+    </aside>
+
+    <main>
+      <section aria-labelledby="h-about">
+        <h2 id="h-about">About</h2>
+        <p class="lede">Hello World - I'm Ross Clifford, a software developer from Galway Ireland.</p>
+        <p class="lede">Currently I work in telecoms software - delivering changes for microservices operating on a network management system.</p>
+        <p class="lede">Feel free to send me an email to discuss any opportunities in this new era of development.</p>
+      </section>
+
+      <section aria-labelledby="h-exp">
+        <h2 id="h-exp">Experience</h2>
+        <article class="entry">
+          <div class="entry-head">
+            <h3>Software Engineer</h3>
+            <span class="when">Jun 2018 to present</span>
+          </div>
+          <p class="org">GlobalLogic, network management systems for the telecom industry</p>
+          <ul>
+            <li>Develop and deliver changes to the JMS messaging component of a network management product, from code change through to release.</li>
+            <li>Provide technical support for the component, investigating issues as they are raised.</li>
+            <li>Act as the team's Security Master. I triage CVE and vulnerability findings and keep the team up to date on which patches to apply.</li>
+            <li>Work in Git with Gerrit code review, and build and ship through Jenkins CI/CD pipelines and Docker.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section aria-labelledby="h-skills">
+        <h2 id="h-skills">Skills</h2>
+        <dl class="skills">
+          <div>
+            <dt>Languages</dt>
+            <dd><span class="tag">Java</span><span class="tag">Python</span><span class="tag">Shell scripting</span><span class="tag">SQL</span><span class="tag">C#</span></dd>
+          </div>
+          <div>
+            <dt>Delivery</dt>
+            <dd><span class="tag">Git</span><span class="tag">Gerrit</span><span class="tag">Jenkins</span><span class="tag">Docker</span><span class="tag">CI/CD</span><span class="tag">Microservices</span></dd>
+          </div>
+          <div>
+            <dt>Domain</dt>
+            <dd><span class="tag">JMS messaging</span><span class="tag">Network management</span><span class="tag">CVE triage</span><span class="tag">Security</span></dd>
+          </div>
+          <div>
+            <dt>AI tooling</dt>
+            <dd><span class="tag">Amazon Q</span><span class="tag">Claude Code</span><span class="tag">Kiro CLI</span><span class="tag">AI Driven Development</span></dd>
+          </div>
+        </dl>
+      </section>
+
+      <section aria-labelledby="h-edu">
+        <h2 id="h-edu">Education</h2>
+        <article class="entry">
+          <div class="entry-head">
+            <h3>Higher Diploma in Software Design and Development</h3>
+            <span class="when">2016 to 2017</span>
+          </div>
+          <p class="org">University of Galway, Industry Stream</p>
+          <p>Honours Degree, 2.1</p>
+        </article>
+        <article class="entry">
+          <div class="entry-head">
+            <h3>B.Sc. in Computer Science and Information Technology</h3>
+            <span class="when">2012 to 2016</span>
+          </div>
+          <p class="org">University of Galway</p>
+          <p>Honours Degree, 2.2. Final year project: Game Theory Simulation Suite.</p>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <footer>Updated September 2026. AI Disclosure: Content generated using Claude Opus 5.5</footer>
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById('copy-email');
+  var em = document.getElementById('email');
+  if (!btn || !em) return;
+  function selectText(node) {
+    try {
+      var range = document.createRange();
+      range.selectNodeContents(node);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    } catch (e) {}
+  }
+  function flash(label) {
+    btn.textContent = label;
+    setTimeout(function () { btn.textContent = 'Copy'; }, 1800);
+  }
+  btn.addEventListener('click', function () {
+    var text = em.textContent.trim();
+    try {
+      navigator.clipboard.writeText(text).then(
+        function () { flash('Copied'); },
+        function () { selectText(em); flash('Selected'); }
+      );
+    } catch (e) {
+      selectText(em);
+      flash('Selected');
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
